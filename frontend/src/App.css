@@ -1,0 +1,28 @@
+.container {
+  height: 15rem;
+  width: 15rem;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: blue;
+}
+.picture{
+  border: 1px solid black;
+  border-radius: 50%;
+  height: 8rem;
+  width: 8rem;
+  position: absolute;;
+  bottom: 60%;
+}
+.description{
+  margin-top: 6rem;
+}
+.user-image {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  background-position: 50% 50%;
+  background-size: cover;
+  border-radius: 50%;
+}
