@@ -1,4 +1,4 @@
-export default interface Model {
+export  interface Model {
     results: Result[];
     info:    Info;
 }
