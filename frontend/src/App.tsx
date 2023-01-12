@@ -1,26 +1,39 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './App.css';
-import {Model} from './model'
+import { Model } from './model'
 
 function App() {
   const [user, setUser] = useState<Model>();
+
+  const [enableEdit, setEnableEdit] = useState<boolean>(false)
+  const inputRef = useRef<HTMLInputElement>(null)
+  const editHandler = () => {
+    setEnableEdit(prev => !prev);
+  }
+  const saveHandler = () => {
+    console.log(inputRef.current?.value)
+    if(user) {
+      user.results[0].name.first = inputRef.current!?.value
+    }
+    setEnableEdit(prev => !prev);
+
+  }
   const userGenerator = () => {
-    fetch('https://randomuser.me/api/').then((res) => res.json()).then((result)=>
-    setUser(result))
+    fetch('https://randomuser.me/api/').then((res) => res.json()).then((result) =>
+      setUser(result))
   }
   useEffect(() => {
-    fetch('https://randomuser.me/api/').then((res) => res.json()).then((result)=>
-     setUser(result))
+    fetch('https://randomuser.me/api/').then((res) => res.json()).then((result) =>
+      setUser(result))
   }, [])
-  console.log(user);
   return (
     <>
-    <div className='container'>
-      <div className="picture"><img className='user-image' src={user?.results[0].picture.large} alt='here'></img></div>
-      <h6 className='description'>{`${user?.results[0].name.title}: ${user?.results[0].name.first} ${user?.results[0].name.last}`}</h6>
-      <h6>Lorem ipsum dolor sit amet.</h6>
-      <button onClick={userGenerator}>Get Random User</button>
-    </div>
+      <div onDoubleClick={editHandler} className='container'>
+        <div className="picture"><img className='user-image' src={user?.results[0].picture.large} alt='here'></img></div>
+        {enableEdit ? <input type='text' ref={inputRef} className='name__input' defaultValue={user?.results[0].name.first} /> : <h3 className='description'>{user?.results[0].name.first}</h3>}
+        <h3>${user?.results[0].email}: </h3>
+        {enableEdit ? <button className='button' onClick={saveHandler}>Save</button> : <button className='button' onClick={userGenerator}>Get Random User</button>}
+      </div>
     </>
   );
 }

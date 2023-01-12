@@ -5,7 +5,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: blue;
+  background-color: rgb(51, 47, 47);
+  color: white;
+  font-family: tangerine;
+  font-size: x-large;
+  user-select: none;
 }
 .picture{
   border: 1px solid black;
@@ -16,7 +20,7 @@
   bottom: 60%;
 }
 .description{
-  margin-top: 6rem;
+  margin-top: 4rem;
 }
 .user-image {
   display: inline-block;
@@ -25,4 +29,16 @@
   background-position: 50% 50%;
   background-size: cover;
   border-radius: 50%;
+}
+.button {
+  border-radius: 1rem;
+  background-color: white;
+  padding: .4rem;
+  border: none;
+}
+.name__input {
+  margin-top: 4rem;
+  border-radius: 1rem;
+  padding: .4rem;
+  text-align: center;
 }
